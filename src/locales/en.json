@@ -1,0 +1,9 @@
+{
+  "navigation": {
+    "appTitle": "Vue Todo App",
+    "home": "Home",
+    "about": "About",
+    "en": "English",
+    "km": "ខ្មែរ"
+  }
+}
