@@ -35,8 +35,6 @@ export const useTodoStore = defineStore("useTodoStore", {
     },
 
     async addTodo(newTodo: String) {
-      this.isLoading = true;
-
       const todo: Todo = {
         id: Math.floor(Math.random() * 100000),
         title: newTodo,
@@ -58,13 +56,9 @@ export const useTodoStore = defineStore("useTodoStore", {
       }
 
       this.todos.push(todo);
-
-      this.isLoading = false;
     },
 
     async deleteTodo(id: Number) {
-      this.isLoading = true;
-
       this.todos = this.todos.filter((d) => d.id != id);
 
       try {
@@ -78,8 +72,6 @@ export const useTodoStore = defineStore("useTodoStore", {
       } catch (error) {
         console.log(`An error has occured: ${error}`);
       }
-
-      this.isLoading = false;
     },
 
     async handleFavorite(id: Number) {

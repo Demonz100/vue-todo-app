@@ -5,5 +5,14 @@
     "about": "About",
     "en": "English",
     "km": "ខ្មែរ"
+  },
+  "main": {
+    "allTodo": "All Todos",
+    "favorites": "Favorites",
+    "addMore": "Add More",
+    "addTodo": "Add Todo",
+    "add": "Add",
+    "cancel": "Cancel",
+    "loading": "Loading..."
   }
 }

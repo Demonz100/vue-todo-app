@@ -1,11 +1,26 @@
 <template>
-    <select v-model="$i18n.locale">
-        <option>{{ $t('navigation.en') }}</option>
-        <option>{{ $t('navigation.km') }}</option>
+    <select v-model="locale" @change="handleChangeLocale">
+        <option v-for="supportedLocale in supportedLocales" :value="supportedLocale">{{$t(`navigation.${supportedLocale}`)}}</option>
     </select>
 </template>
   
-<script setup lang="ts">
+<script lang="ts">
+import { getSupportedLocale } from '../utils/i18n';
+
+export default {
+    data(){
+        return{
+            locale: this.$i18n.locale,
+            supportedLocales: getSupportedLocale
+        }
+    },
+    methods:{
+        handleChangeLocale(){
+            this.$i18n.locale = this.locale
+            localStorage.setItem("setLocale", this.locale);
+        }
+    }
+}
 </script>
   
 <style scoped>

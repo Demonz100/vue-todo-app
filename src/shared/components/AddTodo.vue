@@ -1,40 +1,20 @@
 <template>
     <div>
         <div class="button" @click="showModal = true">
-            <p>Add More</p>
-            <i class="material-icons">
-                add
-            </i>
+            <p>{{ $t('main.addMore') }}</p>
+            <i class="material-icons">add</i>
         </div>
-        <teleport to="body" v-if="showModal">
-            <div class="modal-container">
-                <div class="modal">
-                    <label for="todo-input">Add Todo: </label>
-                    <input type="text" id="todo-input" v-model="newTodo">
-                    <br>
-                    <div class="d-flex justify-content-between">
-                        <button class="button" @click="showModal = false">Cancel</button>
-                        <button class="button" @click="handleAddTodo">Add</button>
-                    </div>
-                </div>
-            </div>
-        </teleport>
+        <Transition name="modal">
+            <AddModal :showModal="showModal" @close="showModal = false"/>
+        </Transition>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useTodoStore } from '../stores/TodoStore';
+import { defineAsyncComponent, ref } from 'vue';
+const AddModal = defineAsyncComponent(()=>import('@/shared/components/AddModal.vue'))
 
-const TodoStore = useTodoStore()
 let showModal = ref(false)
-
-let newTodo = ref('')
-
-const handleAddTodo = () => {
-    TodoStore.addTodo(newTodo.value)
-    showModal.value = false
-}
 </script>
 
 <style>
@@ -51,7 +31,9 @@ const handleAddTodo = () => {
 
 .modal-container {
     background-color: rgba(0, 0, 0, 0.441);
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -60,6 +42,7 @@ const handleAddTodo = () => {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    transition: opacity 0.3s ease;
 }
 
 .modal {
@@ -68,6 +51,7 @@ const handleAddTodo = () => {
     border: 1px solid #f2f2f2;
     border-radius: 4px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 input {
@@ -76,5 +60,20 @@ input {
     border: 1px solid gray;
     margin: 2rem;
 
+}
+
+/* Transition */
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>

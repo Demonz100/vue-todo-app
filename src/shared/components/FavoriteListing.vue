@@ -1,9 +1,9 @@
 <template>
     <div class="todos">
         <Loading v-if="isLoading" />
-        <div v-else v-for="todo in getAllFavorites" :key="`todo-${todo.id}`">
-            <Todo :todo="todo" />
-        </div>
+        <transition-group name="list" tag="div">
+            <Todo v-for="todo in getAllFavorites" :key="`todo-${todo.id}`" :todo="todo" />
+        </transition-group>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="loading">
-        <h3>Loading...</h3>
+        <h3>{{ $t('main.loading') }}</h3>
     </div>
 </template>
 

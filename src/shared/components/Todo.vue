@@ -2,30 +2,36 @@
     <div class="todo">
         <input v-if="isBeingEdited" type="text" v-model="newTodo" @keyup.enter="handleSaveEdit(todo.id)">
         <h3 v-else>{{ todo.title }}</h3>
+        
+        {{showToast}}
 
         <div class="icons">
             <i class="material-icons" @click="handleEditTodo(todo.id)">
                 edit
             </i>
-            <i class="material-icons" @click="TodoStore.deleteTodo(todo.id)">
+            <i class="material-icons" @click="handleDeleteTodo(todo.id)">
                 delete
             </i>
             <i class="material-icons" :class="{ active: todo.isFav }" @click="TodoStore.handleFavorite(todo.id)">
                 favorite
             </i>
         </div>
+        <Toast v-if="showToast" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineAsyncComponent, ref } from 'vue'
 import { useTodoStore } from '../stores/TodoStore';
 import type { Todo } from '../utils/Todo.Interface';
+const Toast = defineAsyncComponent(() => import('@/shared/components/Toast.vue'))
+
 const props = defineProps<{
     todo: Todo
 }>()
 
 const TodoStore = useTodoStore()
+
 let isBeingEdited = ref(false)
 let newTodo = ref(props.todo.title)
 const handleEditTodo = (id: Number) => {
@@ -35,6 +41,15 @@ const handleSaveEdit = (id: Number) => {
     TodoStore.editTodo(id, newTodo.value)
     isBeingEdited.value = false
 }
+
+const showToast = ref(false)
+
+const handleDeleteTodo = (id: Number) => {
+    showToast.value = true
+    // TodoStore.deleteTodo(id)
+    setTimeout(() => showToast.value = false, 2000)
+}
+
 </script>
 
 <style scoped>
