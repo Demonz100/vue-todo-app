@@ -1,39 +1,22 @@
 {
   "todos": [
     {
-      "title": "play elden ring",
-      "isFav": true,
-      "id": 6233
-    },
-    {
       "title": "eat some pineapples",
-      "isFav": false,
-      "id": 98534
-    },
-    {
-      "id": 3905,
-      "title": "take medicines",
-      "isFav": true
+      "isFav": true,
+      "id": 98534,
+      "isCompleted": false
     },
     {
       "id": 77829,
       "title": "Clean room",
-      "isFav": false
+      "isFav": true,
+      "isCompleted": true
     },
     {
       "id": 52857,
       "title": "Cut hair",
-      "isFav": false
-    },
-    {
-      "id": 93911,
-      "title": "ceaeee",
-      "isFav": false
-    },
-    {
-      "id": 41517,
-      "title": "svhshh",
-      "isFav": false
+      "isFav": false,
+      "isCompleted": false
     }
   ]
 }

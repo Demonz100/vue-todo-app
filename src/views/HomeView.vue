@@ -4,6 +4,7 @@
         <div class="d-flex">
           <h4 class="button" @click="tabsComponent = TodoListing">{{ $t('main.allTodo') }}</h4>
           <h4 class="button" @click="tabsComponent = FavoriteListing">{{ $t('main.favorites') }}</h4>
+          <h4 class="button" @click="tabsComponent = CompletedListing">{{ $t('main.allCompleted') }}</h4>
         </div>
         <AddTodo />
     </div>
@@ -20,6 +21,8 @@ import { defineAsyncComponent, shallowRef } from 'vue';
 const AddTodo = defineAsyncComponent(() => import('@/shared/components/AddTodo.vue'))
 const TodoListing = defineAsyncComponent(()=> import("@/shared/components/TodoListing.vue"))
 const FavoriteListing = defineAsyncComponent(()=> import('@/shared/components/FavoriteListing.vue'))
+const CompletedListing = defineAsyncComponent(()=> import('@/shared/components/CompletedListing.vue'))
+
 
 const tabsComponent = shallowRef(TodoListing)
 

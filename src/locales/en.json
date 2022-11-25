@@ -13,6 +13,11 @@
     "addTodo": "Add Todo",
     "add": "Add",
     "cancel": "Cancel",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "allCompleted": "Completed",
+    "noTask": "You don't have any task"
+  },
+  "notification": {
+    "delete": "Task has been deleted"
   }
 }

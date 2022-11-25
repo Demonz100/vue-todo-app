@@ -6,12 +6,16 @@ export const useTodoStore = defineStore("useTodoStore", {
   state: (): TodoStore => ({
     todos: [],
     isLoading: false,
+    showToast: false
   }),
 
   getters:{
     getAllFavorites(state) {
       return state.todos.filter(f => f.isFav == true)
-    }
+    },
+    getAllCompleted(state) {
+      return state.todos.filter(f => f.isCompleted == true)
+    },
   },
 
   actions: {
@@ -27,6 +31,8 @@ export const useTodoStore = defineStore("useTodoStore", {
         }
 
         this.todos = await res.json();
+
+        this.todos.sort((a)=>a.isCompleted == true ? 1 : -1)
       } catch (error) {
         console.log(`An error has occured: ${error}`);
       }
@@ -39,6 +45,7 @@ export const useTodoStore = defineStore("useTodoStore", {
         id: Math.floor(Math.random() * 100000),
         title: newTodo,
         isFav: false,
+        isCompleted: false
       };
 
       try {
@@ -72,6 +79,9 @@ export const useTodoStore = defineStore("useTodoStore", {
       } catch (error) {
         console.log(`An error has occured: ${error}`);
       }
+
+      this.showToast = true
+      setTimeout(() => this.showToast = false, 2000)
     },
 
     async handleFavorite(id: Number) {
@@ -85,6 +95,23 @@ export const useTodoStore = defineStore("useTodoStore", {
           headers: { "Content-Type": "application/json" },
           method: "PATCH",
           body: JSON.stringify({ isFav: todo?.isFav }),
+        });
+      } catch (error) {
+        console.log(`An error has occured: ${error}`);
+      }
+    },
+
+    async handleCompleted(id: Number) {
+      const todo = this.todos.find((f) => f.id === id);
+      if (todo) {
+        todo.isCompleted = !todo.isCompleted;
+      }
+
+      try {
+        const res = await fetch(`${import.meta.env.VITE_APP_API_URL}todos` + "/" + id, {
+          headers: { "Content-Type": "application/json" },
+          method: "PATCH",
+          body: JSON.stringify({ isCompleted: todo?.isCompleted }),
         });
       } catch (error) {
         console.log(`An error has occured: ${error}`);

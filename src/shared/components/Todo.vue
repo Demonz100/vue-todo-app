@@ -1,11 +1,14 @@
 <template>
-    <div class="todo">
+    <div class="todo" :class="{completed: todo.isCompleted}">
         <input v-if="isBeingEdited" type="text" v-model="newTodo" @keyup.enter="handleSaveEdit(todo.id)">
         <h3 v-else>{{ todo.title }}</h3>
-        
-        {{showToast}}
-
         <div class="icons">
+            <i v-if="todo.isCompleted" class="material-icons" @click="TodoStore.handleCompleted(todo.id)">
+                close
+            </i>
+            <i v-else class="material-icons" @click="TodoStore.handleCompleted(todo.id)">
+                check_circle
+            </i>
             <i class="material-icons" @click="handleEditTodo(todo.id)">
                 edit
             </i>
@@ -16,15 +19,17 @@
                 favorite
             </i>
         </div>
-        <Toast v-if="showToast" />
+        <transition name="toast">
+            <Toast v-if="TodoStore.showToast"/>
+        </transition>
     </div>
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from 'vue'
+import { ref, defineAsyncComponent, provide } from 'vue'
 import { useTodoStore } from '../stores/TodoStore';
 import type { Todo } from '../utils/Todo.Interface';
-const Toast = defineAsyncComponent(() => import('@/shared/components/Toast.vue'))
+const Toast = defineAsyncComponent(() => import('@/shared/components/Modals/ToastModal.vue'))
 
 const props = defineProps<{
     todo: Todo
@@ -34,6 +39,7 @@ const TodoStore = useTodoStore()
 
 let isBeingEdited = ref(false)
 let newTodo = ref(props.todo.title)
+
 const handleEditTodo = (id: Number) => {
     isBeingEdited.value = !isBeingEdited.value
 }
@@ -42,14 +48,9 @@ const handleSaveEdit = (id: Number) => {
     isBeingEdited.value = false
 }
 
-const showToast = ref(false)
-
 const handleDeleteTodo = (id: Number) => {
-    showToast.value = true
-    // TodoStore.deleteTodo(id)
-    setTimeout(() => showToast.value = false, 2000)
+    TodoStore.deleteTodo(id)
 }
-
 </script>
 
 <style scoped>
@@ -62,6 +63,11 @@ const handleDeleteTodo = (id: Number) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.completed{
+    background: rgb(0,131,4);
+    background: linear-gradient(90deg, rgba(0,131,4,0.5522584033613445) 0%, rgba(255,255,255,1) 100%);
 }
 
 .todo h3,

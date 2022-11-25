@@ -4,6 +4,13 @@
         <transition-group name="list" tag="div">
             <Todo v-for="todo in getAllFavorites" :key="`todo-${todo.id}`" :todo="todo" />
         </transition-group>
+        <transition-group name="list" tag="div">
+            <div v-if="getAllFavorites.length == 0" class="empty-list">
+                <span>
+                    {{$t('main.noTask')}}
+                </span>
+            </div>
+        </transition-group>
     </div>
 </template>
 
@@ -27,5 +34,9 @@ onMounted(() => { todoStore.getTodos() })
     padding: 2rem 2rem 1rem 2rem;
     border-radius: 8px;
     border: 1px solid rgba(98, 98, 98, 0.212);
+}
+.empty-list{
+    margin-bottom: 20px;
+    text-align: center;
 }
 </style>
