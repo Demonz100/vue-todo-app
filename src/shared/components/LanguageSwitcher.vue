@@ -7,6 +7,7 @@
     <transition name="toast">
         <LoadingModal v-if="showLoading" />
     </transition>
+    <!-- Testing Git -->
 </template>
   
 <script lang="ts">
