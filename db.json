@@ -1,20 +1,38 @@
 {
   "todos": [
     {
-      "title": "eat some pineapples",
-      "isFav": true,
-      "id": 98534,
-      "isCompleted": false
-    },
-    {
       "id": 77829,
       "title": "Clean room",
       "isFav": true,
-      "isCompleted": true
+      "isCompleted": false
     },
     {
       "id": 52857,
       "title": "Cut hair",
+      "isFav": false,
+      "isCompleted": false
+    },
+    {
+      "id": 21073,
+      "title": "Do laundry",
+      "isFav": false,
+      "isCompleted": false
+    },
+    {
+      "id": 45494,
+      "title": "do archon quest",
+      "isFav": false,
+      "isCompleted": false
+    },
+    {
+      "id": 23860,
+      "title": "Play Football",
+      "isFav": false,
+      "isCompleted": false
+    },
+    {
+      "id": 35499,
+      "title": "Eat Dinner",
       "isFav": false,
       "isCompleted": false
     }

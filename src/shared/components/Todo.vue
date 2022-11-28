@@ -1,6 +1,6 @@
 <template>
     <div class="todo" :class="{completed: todo.isCompleted}">
-        <input v-if="isBeingEdited" type="text" v-model="newTodo" @keyup.enter="handleSaveEdit(todo.id)">
+        <input v-if="isBeingEdited" type="text" v-model="newTodo" @keyup.enter="handleSaveEdit(todo.id)" v-focus>
         <h3 v-else>{{ todo.title }}</h3>
         <div class="icons">
             <i v-if="todo.isCompleted" class="material-icons" @click="TodoStore.handleCompleted(todo.id)">
@@ -26,9 +26,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineAsyncComponent, provide } from 'vue'
+import { ref, defineAsyncComponent } from 'vue'
 import { useTodoStore } from '../stores/TodoStore';
 import type { Todo } from '../utils/Todo.Interface';
+import { vFocus } from '../directives/vFocus';
 const Toast = defineAsyncComponent(() => import('@/shared/components/Modals/ToastModal.vue'))
 
 const props = defineProps<{

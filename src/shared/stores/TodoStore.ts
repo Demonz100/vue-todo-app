@@ -1,3 +1,4 @@
+import { querySnapshot, datas } from "./../services/get_all_todos";
 import { defineStore } from "pinia";
 import type { Todo } from "./../utils/Todo.Interface";
 import type { TodoStore } from "@/shared/utils/TodoStore.Interface";
@@ -6,46 +7,43 @@ export const useTodoStore = defineStore("useTodoStore", {
   state: (): TodoStore => ({
     todos: [],
     isLoading: false,
-    showToast: false
+    showToast: false,
   }),
 
-  getters:{
+  getters: {
     getAllFavorites(state) {
-      return state.todos.filter(f => f.isFav == true)
+      return state.todos.filter((f) => f.isFav == true);
     },
     getAllCompleted(state) {
-      return state.todos.filter(f => f.isCompleted == true)
+      return state.todos.filter((f) => f.isCompleted == true);
     },
   },
 
   actions: {
     async getTodos() {
       this.isLoading = true;
+
+      // querySnapshot.forEach((res:any) => {
+      //   this.todos.push(res.data())
+      // });
+      // console.log(datas);
       
-      try {
-        const res = await fetch(`${import.meta.env.VITE_APP_API_URL}todos`);
+      // this.todos = datas
+      querySnapshot
+      console.log(datas);
+      
+      
 
-        if (!res.ok) {
-          const message = `An error has occured: ${res.status} - ${res.statusText}`;
-          throw new Error(message);
-        }
-
-        this.todos = await res.json();
-
-        this.todos.sort((a)=>a.isCompleted == true ? 1 : -1)
-      } catch (error) {
-        console.log(`An error has occured: ${error}`);
-      }
+      this.todos.sort((a) => (a.isCompleted == true ? 1 : -1));
 
       this.isLoading = false;
     },
 
     async addTodo(newTodo: String) {
       const todo: Todo = {
-        id: Math.floor(Math.random() * 100000),
         title: newTodo,
         isFav: false,
-        isCompleted: false
+        isCompleted: false,
       };
 
       try {
@@ -69,9 +67,12 @@ export const useTodoStore = defineStore("useTodoStore", {
       this.todos = this.todos.filter((d) => d.id != id);
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_APP_API_URL}todos` + "/" + id, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_APP_API_URL}todos` + "/" + id,
+          {
+            method: "DELETE",
+          }
+        );
         if (!res.ok) {
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
@@ -80,8 +81,8 @@ export const useTodoStore = defineStore("useTodoStore", {
         console.log(`An error has occured: ${error}`);
       }
 
-      this.showToast = true
-      setTimeout(() => this.showToast = false, 2000)
+      this.showToast = true;
+      setTimeout(() => (this.showToast = false), 2000);
     },
 
     async handleFavorite(id: Number) {
@@ -91,11 +92,14 @@ export const useTodoStore = defineStore("useTodoStore", {
       }
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_APP_API_URL}todos` + "/" + id, {
-          headers: { "Content-Type": "application/json" },
-          method: "PATCH",
-          body: JSON.stringify({ isFav: todo?.isFav }),
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_APP_API_URL}todos` + "/" + id,
+          {
+            headers: { "Content-Type": "application/json" },
+            method: "PATCH",
+            body: JSON.stringify({ isFav: todo?.isFav }),
+          }
+        );
       } catch (error) {
         console.log(`An error has occured: ${error}`);
       }
@@ -108,32 +112,37 @@ export const useTodoStore = defineStore("useTodoStore", {
       }
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_APP_API_URL}todos` + "/" + id, {
-          headers: { "Content-Type": "application/json" },
-          method: "PATCH",
-          body: JSON.stringify({ isCompleted: todo?.isCompleted }),
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_APP_API_URL}todos` + "/" + id,
+          {
+            headers: { "Content-Type": "application/json" },
+            method: "PATCH",
+            body: JSON.stringify({ isCompleted: todo?.isCompleted }),
+          }
+        );
       } catch (error) {
         console.log(`An error has occured: ${error}`);
       }
     },
 
-    async editTodo(id: Number, newTodo: String){
+    async editTodo(id: Number, newTodo: String) {
       const todo = this.todos.find((f) => f.id === id);
       if (todo) {
-        todo.title = newTodo
+        todo.title = newTodo;
       }
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_APP_API_URL}todos` + "/" + id, {
-          headers: { "Content-Type": "application/json" },
-          method: "PATCH",
-          body: JSON.stringify({ title: newTodo }),
-        });
-        
+        const res = await fetch(
+          `${import.meta.env.VITE_APP_API_URL}todos` + "/" + id,
+          {
+            headers: { "Content-Type": "application/json" },
+            method: "PATCH",
+            body: JSON.stringify({ title: newTodo }),
+          }
+        );
       } catch (error) {
         console.log(`An error has occured: ${error}`);
       }
-    }
+    },
   },
 });

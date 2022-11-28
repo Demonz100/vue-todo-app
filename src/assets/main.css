@@ -45,4 +45,11 @@ a{
   opacity: 0;
 }
 
-
+@media screen and (max-width: 768px) {
+  #app {
+    padding: 1rem;
+  }
+  .todos {
+    padding: 1rem 1rem 0.5rem 1rem;
+  }
+}

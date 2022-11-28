@@ -4,10 +4,9 @@
             {{ $t(`navigation.${supportedLocale}`) }}
         </option>
     </select>
-    <transition name="toast">
+    <Transition name="modal">
         <LoadingModal v-if="showLoading" />
-    </transition>
-    <!-- Testing Git -->
+    </Transition>
 </template>
   
 <script lang="ts">

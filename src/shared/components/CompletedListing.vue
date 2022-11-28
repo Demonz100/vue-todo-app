@@ -1,6 +1,8 @@
 <template>
     <div class="todos">
-        <Loading v-if="isLoading" />
+        <Transition name="modal">
+            <LoadingModal v-if="isLoading" />
+        </Transition>
         <transition-group name="list" tag="div">
             <Todo v-for="todo in getAllCompleted" :key="`todo-${todo.id}`" :todo="todo" />
         </transition-group>
@@ -18,9 +20,9 @@
 import { useTodoStore } from '@/shared/stores/TodoStore'
 import { storeToRefs } from 'pinia';
 import { defineAsyncComponent, onMounted } from 'vue';
-
-const Loading = defineAsyncComponent(() => import('@/shared/components/Loading.vue'))
+const LoadingModal = defineAsyncComponent(() => import('@/shared/components/Modals/LoadingModal.vue'))
 const Todo = defineAsyncComponent(() => import('@/shared/components/Todo.vue'))
+
 const todoStore = useTodoStore()
 
 const { getAllCompleted, isLoading } = storeToRefs(todoStore)
@@ -34,5 +36,10 @@ onMounted(() => { todoStore.getTodos() })
     padding: 2rem 2rem 1rem 2rem;
     border-radius: 8px;
     border: 1px solid rgba(98, 98, 98, 0.212);
+}
+@media screen and (max-width: 768px) {
+  .todos {
+    padding: 1rem 1rem 0.5rem 1rem;
+  }
 }
 </style>

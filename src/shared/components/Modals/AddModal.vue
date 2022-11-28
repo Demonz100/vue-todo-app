@@ -2,7 +2,7 @@
     <div class="modal-container" v-if="showModal">
         <div class="modal">
             <label for="todo-input">{{ $t('main.addTodo') }}: </label>
-            <input type="text" id="todo-input" v-model="newTodo" @keyup.enter="handleAddTodo">
+            <input type="text" id="todo-input" v-model="newTodo" @keyup.enter="handleAddTodo" v-focus>
             <br>
             <div class="d-flex justify-content-between">
                 <button class="button" @click="$emit('close')">{{ $t('main.cancel') }}</button>
@@ -16,8 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from 'vue';
+import { defineAsyncComponent, onBeforeUpdate, ref } from 'vue';
 import { useTodoStore } from '../../stores/TodoStore';
+import { vFocus } from '../../directives/vFocus'
 const AlertModal = defineAsyncComponent(() => import('./AlertModal.vue'))
 
 const props = defineProps<{
@@ -71,6 +72,6 @@ input {
     border-radius: 4px;
     border: 1px solid gray;
     margin: 2rem;
-
+    outline: none;
 }
 </style>
