@@ -8,11 +8,11 @@
         </div>
         <AddTodo />
     </div>
-    <KeepAlive>
       <Transition name="fade" mode="out-in">
-        <component :is="tabsComponent" />
+        <KeepAlive>
+          <component :is="tabsComponent" />
+        </KeepAlive>
       </Transition>
-    </KeepAlive>
   </main>
 </template>
 

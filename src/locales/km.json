@@ -19,5 +19,12 @@
   },
   "notification": {
     "delete": "កិច្ចការត្រូវបានលុប"
+  },
+  "about":{
+    "buildWith" : "គម្រោង​ PWA នេះប្រេី:",
+    "framework" : "JS framework:",
+    "state" : "State Management:",
+    "script" : "Scripting:",
+    "database" : "Database:"
   }
 }

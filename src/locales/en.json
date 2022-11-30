@@ -19,5 +19,12 @@
   },
   "notification": {
     "delete": "Task has been deleted"
+  },
+  "about":{
+    "buildWith" : "This PWA project is built with:",
+    "framework" : "JS framework:",
+    "state" : "State Management:",
+    "script" : "Scripting:",
+    "database" : "Database:"
   }
 }

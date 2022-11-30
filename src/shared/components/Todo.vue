@@ -41,15 +41,15 @@ const TodoStore = useTodoStore()
 let isBeingEdited = ref(false)
 let newTodo = ref(props.todo.title)
 
-const handleEditTodo = (id: Number) => {
+const handleEditTodo = (id: string) => {
     isBeingEdited.value = !isBeingEdited.value
 }
-const handleSaveEdit = (id: Number) => {
+const handleSaveEdit = (id: string) => {
     TodoStore.editTodo(id, newTodo.value)
     isBeingEdited.value = false
 }
 
-const handleDeleteTodo = (id: Number) => {
+const handleDeleteTodo = (id: string) => {
     TodoStore.deleteTodo(id)
 }
 </script>

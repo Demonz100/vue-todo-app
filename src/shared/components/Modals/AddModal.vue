@@ -22,7 +22,7 @@ import { vFocus } from '../../directives/vFocus'
 const AlertModal = defineAsyncComponent(() => import('./AlertModal.vue'))
 
 const props = defineProps<{
-    showModal: Boolean
+    showModal: boolean
 }>()
 const emit = defineEmits(['close'])
 const TodoStore = useTodoStore()
