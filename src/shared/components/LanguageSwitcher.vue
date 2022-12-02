@@ -12,7 +12,6 @@
 <script lang="ts">
 import { getSupportedLocale } from '../utils/i18n';
 import LoadingModal from './Modals/LoadingModal.vue'
-
 export default {
 	data() {
 		return {
@@ -21,16 +20,16 @@ export default {
 			showLoading: false
 		}
 	},
-	methods: {
-		handleChangeLocale() {
-			this.$i18n.locale = this.locale
-			localStorage.setItem("setLocale", this.locale);
-			this.showLoading = true
-			setTimeout(() => this.showLoading = false, 500)
-		}
-	},
 	components: {
 		LoadingModal
+	},
+	methods: {
+		handleChangeLocale() {
+			this.$i18n.locale = this.locale;
+			localStorage.setItem("setLocale", this.locale);
+			this.showLoading = true;
+			setTimeout(() => (this.showLoading = false), 500);
+		},
 	}
 }
 </script>

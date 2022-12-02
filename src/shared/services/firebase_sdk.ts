@@ -10,8 +10,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_APP_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);

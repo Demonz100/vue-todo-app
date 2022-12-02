@@ -23,9 +23,7 @@ const TodoListing = defineAsyncComponent(()=> import("@/shared/components/TodoLi
 const FavoriteListing = defineAsyncComponent(()=> import('@/shared/components/FavoriteListing.vue'))
 const CompletedListing = defineAsyncComponent(()=> import('@/shared/components/CompletedListing.vue'))
 
-
 const tabsComponent = shallowRef(TodoListing)
-
 </script>
 
 <style scoped>

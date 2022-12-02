@@ -15,7 +15,10 @@
     "cancel": "Cancel",
     "loading": "Loading...",
     "allCompleted": "Completed",
-    "noTask": "You don't have any task"
+    "noTask": "You don't have any task",
+    "confirm": "Confirm",
+    "confirmDelete": "Do you want to delete {todo} from the list?",
+    "emptyTaskName": "Please add name to your task"
   },
   "notification": {
     "delete": "Task has been deleted"

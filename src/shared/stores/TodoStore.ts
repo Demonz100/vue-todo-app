@@ -3,7 +3,7 @@ import type { Todo } from "./../utils/Todo.Interface";
 import type { TodoStore } from "@/shared/utils/TodoStore.Interface";
 import { addNewTodo } from "../services/add_todo";
 import { deleteExistingTodo } from "../services/delete_todo";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase_sdk";
 import { updateCompleted, updateFav, updateTitle } from "../services/update_todo";
 
@@ -59,6 +59,7 @@ export const useTodoStore = defineStore("useTodoStore", {
       addNewTodo(newTodo);
 
       this.todos.push(tempData);
+
       this.getTodos();
     },
 
@@ -66,7 +67,7 @@ export const useTodoStore = defineStore("useTodoStore", {
       this.todos = this.todos.filter((d) => d.id != id);
 
       deleteExistingTodo(id);
-
+      
       this.showToast = true;
       setTimeout(() => (this.showToast = false), 2000);
     },
@@ -93,7 +94,7 @@ export const useTodoStore = defineStore("useTodoStore", {
       const todo = this.todos.find((f) => f.id === id);
       if (todo) {
         todo.title = newTodo;
-        updateTitle(id, todo.title)
+        updateTitle(id, todo.title);
       }
     },
   },

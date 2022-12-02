@@ -7,11 +7,9 @@ let currentLocale = localStorage.getItem("setLocale") || import.meta.env.VITE_AP
 export const getSupportedLocale = import.meta.env.VITE_APP_I18N_SUPPORTED_LOCALE.split(",")
 
 const i18n = createI18n({
-  // default locale
   locale: currentLocale,
   fallbackLocale: import.meta.env.VITE_APP_I18N_FALLBACK_LOCALE || "en",
 
-  // translations
   messages: {
     en: en,
     km: km,

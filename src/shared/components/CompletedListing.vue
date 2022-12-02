@@ -28,7 +28,6 @@ const todoStore = useTodoStore()
 const { getAllCompleted, isLoading } = storeToRefs(todoStore)
 
 onMounted(() => { todoStore.getTodos() })
-
 </script>
 
 <style>

@@ -4,10 +4,6 @@
     </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
-
 <style>
 .spinner-container{
     background-color: rgba(0, 0, 0, 0.441);
@@ -24,6 +20,7 @@
     height: 56px;
     border-radius: 50%;
     background: conic-gradient(#0000 10%, #4ab886);
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
     -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
     animation: spinner-zp9dbg 1s infinite linear;
     position: relative;

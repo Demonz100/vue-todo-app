@@ -1,6 +1,6 @@
 <template>
     <div class="toast-container">
-        <p>{{$t('notification.delete')}}</p>
+        <p>{{ $t('notification.delete') }}</p>
     </div>
 </template>
 
@@ -16,31 +16,36 @@
     bottom: 0;
     right: 0;
 }
-.toast-container p{
+
+.toast-container p {
     color: white;
 }
 
-.toast-enter-from{
+.toast-enter-from {
     opacity: 0;
     transform: translateX(30px)
 }
-.toast-enter-to{
+
+.toast-enter-to {
     opacity: 1;
     transform: translateX(0)
 }
-.toast-enter-active{
+
+.toast-enter-active {
     transition: all 0.2s ease;
 }
 
-.toast-leave-from{
+.toast-leave-from {
     opacity: 1;
     transform: translateX(0)
 }
-.toast-leave-to{
+
+.toast-leave-to {
     opacity: 0;
     transform: translateX(30px)
 }
-.toast-leave-active{
+
+.toast-leave-active {
     transition: all 0.2s ease;
 }
 </style>

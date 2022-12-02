@@ -28,7 +28,6 @@ const todoStore = useTodoStore()
 const { getAllFavorites, isLoading } = storeToRefs(todoStore)
 
 onMounted(() => { todoStore.getTodos() })
-
 </script>
 
 <style>

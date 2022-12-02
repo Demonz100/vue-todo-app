@@ -1,7 +1,7 @@
 <template>
     <div class="modal-container">
         <div class="modal alert-modal">
-            <p>Your task name is empty</p>
+            <p>{{ $t('main.emptyTaskName') }}</p>
         </div>
     </div>
 </template>

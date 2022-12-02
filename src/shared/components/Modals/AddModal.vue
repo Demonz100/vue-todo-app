@@ -10,7 +10,7 @@
             </div>
         </div>
         <transition name="modal">
-            <AlertModal v-if="showAlert"/>
+            <AlertModal v-if="showAlert" />
         </transition>
     </div>
 </template>
@@ -31,10 +31,10 @@ let newTodo = ref('')
 let showAlert = ref(false)
 
 const handleAddTodo = () => {
-    if(newTodo.value == ''){
+    if (newTodo.value == '') {
         showAlert.value = true
-        setTimeout(()=>showAlert.value = false,1000)
-    }else{
+        setTimeout(() => showAlert.value = false, 1000)
+    } else {
         TodoStore.addTodo(newTodo.value)
         emit('close')
         newTodo.value = ''

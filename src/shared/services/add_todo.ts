@@ -14,7 +14,6 @@ export const addNewTodo = async (title:string)=> {
         isCompleted: false
     }
     
-    // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, "todos"), {
       title: newTodo.title,
       isFav: newTodo.isFav,
