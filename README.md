@@ -5,7 +5,7 @@ https://vue-todo-665c4.web.app
 
 npm install
 
-create a .env file base on .env-example
+create a .env file base on .env-example and give keys for firebase configs
 
 ## Compile and Hot-Reload for Development
 
